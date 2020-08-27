@@ -1,0 +1,23 @@
+{
+    "name": "yihuaer\/yunxin",
+    "description": "yun xin IM SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhaoyihuaer",
+            "email": "zhaoyihuaer@aliyun.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yihuaer\\Yunxin\\": "src"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "mockery/mockery": "^1.3"
+    }
+}
