@@ -28,6 +28,7 @@ class User extends Yunxin
     public function createUserId($accid, $name = '', $props = '{}', $icon = '', $token = ''){
         // 创建用户接口地址
         $url = 'https://api.netease.im/nimserver/user/create.action';
+        $this->checkSumBuilder();
 
         $data = array_filter([
             'accid' => $accid,
