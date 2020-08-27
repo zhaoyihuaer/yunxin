@@ -4,6 +4,7 @@ namespace Yihuaer\Yunxin\Traits;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
+use Yihuaer\Yunxin\Exceptions\HttpException;
 
 /**
  * Trait HasHttpRequest
@@ -12,6 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 trait HasHttpRequest
 {
     /**
+     * send get
      * @param $endpoint
      * @param array $query
      * @param array $headers
@@ -26,6 +28,7 @@ trait HasHttpRequest
     }
 
     /**
+     * send post
      * @param $endpoint
      * @param array $params
      * @param array $headers
@@ -39,6 +42,7 @@ trait HasHttpRequest
         ]);
     }
     /**
+     * action send
      * @param $method
      * @param $endpoint
      * @param array $options
@@ -46,7 +50,11 @@ trait HasHttpRequest
      */
     protected function request($method, $endpoint, $options = [])
     {
-        return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($endpoint, $options));
+        try {
+            return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($endpoint, $options));
+        } catch (\Exception $e) {
+            throw new HttpException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**
